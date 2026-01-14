@@ -1,3 +1,6 @@
+Mükemmel gözleminiz! Sağ ve sol margin'leri artırmak için şu değişiklikleri yapabiliriz:
+
+```html
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -52,6 +55,8 @@
             --text-color: #333;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
+            --container-max-width: 1100px; /* Container genişliğini azalttık */
+            --section-max-width: 1000px; /* Section genişliği */
         }
 
         * {
@@ -104,11 +109,19 @@
             color: #bb86fc;
         }
 
+        /* Container'ı daha geniş margin'lerle ayarladık */
         .container {
-            width: 90%;
-            max-width: 1200px;
+            width: 100%;
+            max-width: var(--container-max-width);
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px; /* SAĞ-SOL margin'i 40px'ten 60px'e çıkardık */
+        }
+
+        /* Main container için daha geniş padding */
+        main.container {
+            padding: 0 60px; /* Ana içerik için daha geniş margin */
+            max-width: var(--section-max-width);
+            width: 100%;
         }
 
         /* Header Styles */
@@ -125,6 +138,8 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            max-width: 900px; /* Header içeriği için max genişlik */
+            margin: 0 auto;
         }
 
         .profile-img {
@@ -160,6 +175,7 @@
         .header-text h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
 
         .header-text h2 {
@@ -172,6 +188,9 @@
         .institution-info {
             margin-bottom: 1.5rem;
             line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .contact-info {
@@ -228,6 +247,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 40px; /* Navigation için de aynı padding */
         }
 
         .nav-links {
@@ -324,12 +346,19 @@
             font-size: 1.2rem;
         }
 
+        /* Paragraph and text line optimization */
+        p, li {
+            max-width: 900px; /* Metinler için max genişlik */
+            line-height: 1.7;
+        }
+
         /* Research Interests */
         .interests-container {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             margin-top: 1.5rem;
+            max-width: 900px;
         }
 
         .interest-tag {
@@ -341,17 +370,20 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            white-space: normal;
+            max-width: 300px;
         }
 
         .interest-tag i {
             color: var(--secondary-color);
             font-size: 0.8rem;
+            flex-shrink: 0;
         }
 
         /* Education & Experience */
         .timeline {
             position: relative;
-            max-width: 800px;
+            max-width: 900px; /* Timeline için max genişlik */
             margin: 0 auto;
         }
 
@@ -409,6 +441,7 @@
             box-shadow: var(--shadow);
             transition: var(--transition);
             border-left: 4px solid transparent;
+            max-width: 900px; /* Proje ve yayınlar için max genişlik */
         }
 
         .project-item:hover, .publication-item:hover {
@@ -422,12 +455,14 @@
             font-weight: 600;
             margin-bottom: 0.5rem;
             font-size: 1.1rem;
+            line-height: 1.4;
         }
 
         .pub-authors {
             font-style: italic;
             color: #666;
             margin-bottom: 0.5rem;
+            line-height: 1.5;
         }
 
         .pub-venue {
@@ -470,6 +505,7 @@
             flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 2rem;
+            max-width: 900px;
         }
 
         .filter-btn {
@@ -500,6 +536,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 1.5rem;
+            max-width: 900px;
         }
 
         .skill-category {
@@ -509,6 +546,7 @@
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: var(--shadow);
+            max-width: 400px;
         }
 
         .skill-list {
@@ -652,6 +690,9 @@
             font-size: 0.9rem;
             font-style: italic;
             text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         body.dark-mode .contact-social-section {
@@ -670,6 +711,7 @@
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1rem;
             margin-top: 1rem;
+            max-width: 900px;
         }
 
         .journal-list li, .membership-list li {
@@ -680,6 +722,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            line-height: 1.5;
         }
 
         .journal-list li:before, .membership-list li:before {
@@ -705,6 +748,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .social-links {
@@ -732,6 +777,10 @@
 
         /* Responsive Design */
         @media (max-width: 1024px) {
+            .container, .nav-container, main.container {
+                padding: 0 40px; /* Tablet için biraz daha küçük margin */
+            }
+            
             .nav-links {
                 gap: 0.5rem;
             }
@@ -739,9 +788,18 @@
             .nav-links > li {
                 padding: 1rem 0.8rem;
             }
+            
+            :root {
+                --container-max-width: 950px;
+                --section-max-width: 900px;
+            }
         }
 
         @media (max-width: 768px) {
+            .container, .nav-container, main.container {
+                padding: 0 25px; /* Mobil için daha küçük margin */
+            }
+            
             .header-text h1 {
                 font-size: 2rem;
             }
@@ -808,6 +866,46 @@
             
             .timeline-item:before {
                 left: 14px;
+            }
+            
+            :root {
+                --container-max-width: 100%;
+                --section-max-width: 100%;
+            }
+            
+            .project-item, .publication-item,
+            .timeline, .interests-container,
+            .filters, .skills-container,
+            .journal-list, .membership-list {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container, .nav-container, main.container {
+                padding: 0 20px; /* Çok küçük ekranlar için daha küçük margin */
+            }
+            
+            .header-text h1 {
+                font-size: 1.8rem;
+            }
+            
+            .header-text h2 {
+                font-size: 1.1rem;
+            }
+            
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .interest-tag {
+                font-size: 0.85rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .pub-title {
+                font-size: 1rem;
             }
         }
 
@@ -927,6 +1025,11 @@
             .social-links, .social-icon {
                 display: none !important;
             }
+            
+            .container, main.container {
+                padding: 0 20px !important;
+                max-width: 100% !important;
+            }
         }
 
         /* Publication Years */
@@ -936,21 +1039,40 @@
             border-bottom: 2px solid var(--secondary-color);
             color: var(--primary-color);
             font-size: 1.5rem;
+            max-width: 900px;
         }
 
         /* Progress bars for skills */
         .progress-container {
-            width: 100%;
+            width: 100px;
             background-color: #eee;
             border-radius: 10px;
             overflow: hidden;
             margin-top: 0.3rem;
+            flex-shrink: 0;
         }
 
         .progress-bar {
             height: 8px;
             background-color: var(--secondary-color);
             border-radius: 10px;
+        }
+
+        /* About section specific styling */
+        #about .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        #about p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            hyphens: auto;
+            word-wrap: break-word;
+        }
+        
+        #about a {
+            word-break: break-all;
         }
     </style>
 </head>
@@ -982,7 +1104,7 @@
                     
                     <!-- CV Download Button with file size -->
                     <a href="CV_MBT_January2026.pdf" download="CV_MBT_January2026.pdf" class="download-cv-btn">
-                        <i class="fas fa-download"></i> Download CV
+                        <i class="fas fa-download"></i> Download CV (PDF, ~2MB)
                     </a>
                 </div>
             </div>
@@ -991,7 +1113,7 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="container nav-container">
+        <div class="nav-container">
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
             </button>
@@ -1044,11 +1166,12 @@
                 <span class="interest-tag"><i class="fas fa-shapes"></i> Pattern Recognition</span>
                 <span class="interest-tag"><i class="fas fa-exclamation-triangle"></i> Anomaly Detection</span>
                 <span class="interest-tag"><i class="fas fa-calculator"></i> Inverse Problems</span>
-                <span class="interest-tag"><i class="fas fa-medkit"></i> Medical Imaging & Instrumentation </span>
+                <span class="interest-tag"><i class="fas fa-medkit"></i> Medical Imaging</span>
                 <span class="interest-tag"><i class="fas fa-magnet"></i> Magnetic Particle Imaging (MPI)</span>
             </div>
         </section>
 
+                        
         <!-- Education Section -->
         <section id="education">
             <h2>Education</h2>
